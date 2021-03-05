@@ -1,0 +1,51 @@
+{% extends 'index.html' %} 
+{% block titulo %} Creación de Autores {% endblock titulo %}
+
+{% block body %}
+
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% else %}
+
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Creación/Edición de Autores</h2>
+        </div>
+        <form id="form_creacion" action="#" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div id="errores">
+                </div>
+        <div class="row form-group">
+            <div class="col col-md-3">{{ form.nombre.label }}</div>
+            <div class="col-12 col-md-9">{{ form.nombre }}</div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">{{ form.apellidos.label }}</div>
+            <div class="col-12 col-md-9">{{ form.apellidos }}</div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">{{ form.nacionalidad.label }}</div>
+            <div class="col-12 col-md-9">{{ form.nacionalidad }}</div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">{{ form.descripcion.label }}</div>
+            <div class="col-12 col-md-9">{{ form.descripcion }}</div>
+        </div>
+
+            </div>
+<!--             <div class="modal-footer">
+                <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacion();">Cancelar</button>
+                <button id="boton_creacion" class="btn btn-primary" type="button"
+                    onclick="registrar();">Confirmar</button>
+            </div> -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-dark" href="{% url 'libro:listar_autor' %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+{% endif %}
+{% endblock body %} 

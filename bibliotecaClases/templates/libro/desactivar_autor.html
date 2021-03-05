@@ -1,0 +1,16 @@
+{% extends 'index.html' %} 
+{% block titulo %} Desactivar Autores {% endblock titulo %}
+
+{% block body %}
+<form method="post">
+    
+    {% csrf_token %}
+    <p><strong>¿Desea desactivar a {{ autor.nombre }}?</strong></p><br>
+    <button class="btn btn-success" type="submit">Desactivar</button> 
+    <a class="btn btn-info" href="{% url 'libro:listar_autor' %}">Cancelar</a>
+
+    
+</form>
+{% endblock body %}
+
+
