@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.decorators import login_required
 from apps.libro.views import Inicio
+from apps.usuario.views import Login, logoutUsuario
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('libro/', include(('apps.libro.urls','libro'))), #con esta linea enlazamos este archivo urls con el de mi app (ademas de darle un nombre)
-    # este path Inicio, a diferencia de los otros, est'allamando a una clase, por eso el formato distinto.
-    path('', Inicio.as_view(), name = 'index'), #este name sirve dentro del sistema de plantillas de django solamente, por si queremos utilizarlo nuevamente por ej. desde views o urls.
+    path('', login_required(Inicio.as_view()), name = 'index'), #este name sirve dentro del sistema de plantillas de django solamente, por si queremos utilizarlo nuevamente por ej. desde views o urls.
+    path('accounts/login/',Login.as_view(), name='login'),
+    path('logout/', login_required(logoutUsuario), name = 'logout'),
 ]

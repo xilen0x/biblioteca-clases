@@ -26,6 +26,7 @@ class Libro(models.Model):
     #autor_id = models.OneToOneField(Autor, on_delete = models.CASCADE) # relacion uno a uno
     #autor_id = models.ForeignKey(Autor, on_delete = models.CASCADE) # relacion uno a muchos
     autor_id = models.ManyToManyField(Autor) # relacion muchos a muchos
+    estado = models.BooleanField('Estado', default = True)
     fecha_creacion = models.DateField('Fecha de creación', auto_now = True, auto_now_add = False)
 
     class Meta:

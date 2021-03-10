@@ -1,0 +1,14 @@
+{% extends 'index.html' %} 
+{% block titulo %} Desactivar Libros {% endblock titulo %}
+
+{% block body %}
+<form method="post">
+    
+    {% csrf_token %}
+    <p><strong>¿Desea desactivar el volumen {{ libro.titulo }}?</strong></p><br>
+    <button class="btn btn-success" type="submit">Desactivar</button> 
+    <a class="btn btn-info" href="{% url 'libro:listar_libro' %}">Cancelar</a>
+
+    
+</form>
+{% endblock body %}

@@ -29,8 +29,11 @@
                         <a href="{% url 'index' %}"><i class="menu-icon fa fa-laptop"></i>Inicio</a>
                     </li>
                     <li class="menu-title">Libros</li><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
+                    <li>
                        <a href="{% url 'libro:listar_libro' %}" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Listado de Libros</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'libro:crear_libro' %}" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Registro de Libros</a>
                     </li>
 
                     <li class="menu-title">Autores</li><!-- /.menu-title -->
@@ -61,9 +64,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    <a class="navbar-brand" href="./"><img src="{% static 'images/logo3.png' %}" alt="Logo"></a>
                 </div>
             </div>
             <div class="top-right">
@@ -91,7 +92,7 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -99,13 +100,34 @@
             </div>
         </header>
         <!-- /#header -->
+
+{% if messagess %}
+
+        {% for messages in messagess %}
+            <div class="notification {{ message.tags }}">
+                {{message}}
+            </div>
+        {% endfor %}
+
+{% endif %}
+
         <!-- Content -->
         <div class="content">
-            {% block body %}
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    {% block body %}
+                    
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <h2>Bienvenido {{ user.username }}</h2>
+                        </div>
+                    </div>
 
-            <h1>Bienvenidos</h1>
+                    {% endblock body %}
+                </div>
+            </div>
 
-        {% endblock body %}
         </div>
         <!-- /.content -->
         <div class="clearfix"></div>
